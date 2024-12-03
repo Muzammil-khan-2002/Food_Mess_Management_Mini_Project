@@ -1,0 +1,330 @@
+import java.util.*;
+class Food
+{
+	int fid;
+	String fname;
+	int fprice;
+	String fcatagory;
+	//----------------------------------------------------------
+	String purchasefood;//name
+	int pfid;
+
+	int purchasefoodqty;//quantity
+	
+	
+	public void setFid(int fid)
+	{
+		this.fid=fid;
+	}
+	public int getFid()
+	{
+		return fid;
+	}
+	public void setFname(String fname)
+	{
+		this.fname=fname;
+	}
+	public String getFname()
+	{
+		return fname;
+	}
+	public void setFprice(int fprice)
+	{
+		this.fprice=fprice;
+	}
+	public int getFprice()
+	{
+		return fprice;
+	}
+	public void setFcatagory(String fcatagory)
+	{
+		this.fcatagory=fcatagory;
+	}
+	public String getFcatagory()
+	{
+		return fcatagory;
+	}
+	public void setPurchaseFood(String pfn)
+	{
+		purchasefood=pfn;
+	}
+	public String getPurchaseFood()
+	{
+		return purchasefood;
+	}
+	public void setPurchaseFoodQty(int qty)
+	{
+		purchasefoodqty=qty;
+	}
+	public int getPurchaseFoodQty()
+	{
+		return purchasefoodqty;
+	}
+}
+
+public class FoodApp
+{
+	public static void main(String args[])
+	{
+		Scanner xyz=new Scanner(System.in);
+		
+		System.out.println("Enter Total Foods you wants to puts in shop:\t");
+		int total_food=xyz.nextInt();
+		Food f[]=new Food[total_food];
+		for(int i=0;i<total_food;i++)
+		{
+			System.out.println("----------------------------------------------------");
+			System.out.println("Enter Foood Id:\t");
+			int fid=xyz.nextInt();
+			xyz.nextLine();
+			System.out.println("Enter Food Name:\t");
+			String fname=xyz.nextLine();
+			System.out.println("Enter Food Price");
+			int fprice=xyz.nextInt();
+			xyz.nextLine();
+			System.out.println("Enter Food Catagory");
+			String fcatagory=xyz.nextLine();
+			
+			f[i]=new Food();
+			f[i].setFid(fid);
+			f[i].setFname(fname);
+			f[i].setFcatagory(fcatagory);
+			f[i].setFprice(fprice);
+			
+		}
+		int choice=0;
+		do
+		{
+			System.out.println("1-Display:\t");
+			System.out.println("2-Display food details whose price range between 500 to 1000:\t");
+			System.out.println("3-Search food details using by id:\t");
+			System.out.println("4-Update food details using by name:\t");
+			System.out.println("5-Delete food details by using its price:\t");
+			System.out.println("6-Display food details which first latter P and Last Latter A:\t");
+			System.out.println("7-Purchase Food and Ganerate The Bill:\t");
+			//System.out.println("8-Ganerate The Bill:\t");
+			choice=xyz.nextInt();
+			
+			int totalpur=0;
+			switch(choice)
+			{
+				case 1:{
+							System.out.println("				MENU							    ");
+							System.out.println("________________________________________________________________");
+							for(int i=0;i<f.length;i++)
+							{
+								System.out.println(f[i].getFid()+"\t\t"+f[i].getFname()+"\t\t"+f[i].getFcatagory()+"\t\t"+f[i].getFprice());
+							}
+						}
+						System.out.println("________________________________________________________________");
+						break;
+				case 2:
+						{
+							System.out.println("				500 - 1000							    ");
+							System.out.println("________________________________________________________________");
+								for(int i=0;i<f.length;i++)
+								{
+									if(f[i].getFprice()>500 && f[i].getFprice()<1000)
+									{
+										System.out.println(f[i].getFid()+"\t\t"+f[i].getFname()+"\t\t"+f[i].getFcatagory()+"\t\t"+f[i].getFprice());
+									}
+								}
+						}
+						System.out.println("________________________________________________________________");
+						break;
+				case 3:
+						{
+							System.out.println("________________________________________________________________");
+							System.out.println("Enter Id For search details:\t");
+							int skey=xyz.nextInt();
+							for(int i=0;i<f.length;i++)
+							{
+								if(f[i].getFid()==skey)
+								{
+									System.out.println(f[i].getFid()+"\t\t"+f[i].getFname()+"\t\t"+f[i].getFcatagory()+"\t\t"+f[i].getFprice());
+								}
+							}
+						}
+						System.out.println("________________________________________________________________");
+						break;
+				case 4:
+						{
+							System.out.println("----------------------------------------------------------------");
+							System.out.println("Update food details by using food name:\t");
+							xyz.nextLine();
+							String fname=xyz.nextLine();
+							
+							for(int i=0;i<f.length;i++)
+							{
+								//xyz.nextLine();
+								if(f[i].getFname().equalsIgnoreCase(fname))
+								{
+									
+									//boolean b=true;
+									int updatechoice=0;
+									do
+									{
+										System.out.println("-------------------------");
+										xyz.nextLine();
+										System.out.println("1-ID:\t");
+										System.out.println("2-Name:\t");
+										System.out.println("3-Catagory:\t");
+										System.out.println("4-Price:\t");
+										System.out.println("Enter choice?\t");
+										System.out.println("-------------------------");
+										updatechoice=xyz.nextInt();
+									
+									
+										switch(updatechoice)
+										{
+												case 1:
+													{
+														System.out.println("Enter New Id:\t");
+														int newid=xyz.nextInt();
+														f[i].setFid(newid);
+													}
+													break;
+												case 2:
+													{
+														xyz.nextLine();
+														System.out.println("Enter New Name:\t");
+														String newname=xyz.nextLine();
+														f[i].setFname(newname);
+													}
+													break;
+												case 3:
+												{
+													xyz.nextLine();
+													System.out.println("Enter New Catagory:\t");
+													String newcatagory=xyz.nextLine();
+													f[i].setFcatagory(newcatagory);
+												}
+												break;
+												case 4:
+												{
+													System.out.println("Enter New Price:\t");
+													int newprice=xyz.nextInt();
+													f[i].setFprice(newprice);
+												}
+												break;
+											//default:System.out.println("Invalid!");break;
+										}	
+									}while(updatechoice<=4);
+										System.out.println("----------------------------------------------------------------");
+								}
+							}
+						}
+						
+						break;
+						
+				case 5:	{
+							int count=0;
+							System.out.println("Enter food price, which you want to delete:\t");
+							int delprice=xyz.nextInt();//560
+							for(int i=0;i<f.length;i++)
+							{
+								if(f[i].getFprice()==delprice)
+								{
+									count++;
+								}
+							}
+						
+							int newsize = f.length-count;
+							Food f1[]=new Food[newsize];
+							int k=0;
+							for(int j=0;j<f.length;j++)
+							{
+								if(f[j].getFprice()!=delprice)// value!=560
+								{
+									f1[k]=f[j];
+									k++;
+								}
+							}
+							f=f1;
+						}	
+						break;
+				case 6:
+						{
+							System.out.println("________________________________________________________________");
+							for(int j=0;j<f.length;j++){
+							int count=0;
+							String exm=f[j].getFname();
+							char ch[]=exm.toCharArray(); // p a k o d a
+							for(int i=0;i<ch.length;i++)
+							{
+								if((i==0 && ch[0]=='p' || ch[0]=='P') || (i==ch.length-1 && ch[ch.length-1]=='a' || ch[ch.length-1]=='A'))
+								{
+									++count;
+								}
+							}
+							if(count==2)
+							{
+								//System.out.println("Yes");
+									System.out.println(f[j].getFid()+"\t\t"+f[j].getFname()+"\t\t"+f[j].getFcatagory()+"\t\t"+f[j].getFprice());
+							}
+							}
+							System.out.println("________________________________________________________________");
+						}
+						break;
+						
+				case 7:
+						{
+							System.out.println("How Many Foods Purchase?\t");
+							totalpur=xyz.nextInt();// switch case k bahr declare kara hu mene q k bill wale section case 8 m bhi zarurat lagegi
+
+							for(int i=0;i<totalpur;i++)
+							{	
+								xyz.nextLine();
+								System.out.println("Enter Food Name?\t");
+								String pfn=xyz.nextLine();
+								System.out.println("How Many Quantity?\t");
+								int q=xyz.nextInt();
+								f[i].setPurchaseFood(pfn);
+								f[i].setPurchaseFoodQty(q);
+							}
+							System.out.println("				PURCHASE							    ");
+							System.out.println("________________________________________________________________");
+							System.out.println("ID\t\tNAME\t\tCATAGORY\tPRICE\t\tQUANTITY");
+							for(int j=0;j<totalpur;j++)
+							{	
+								
+								for(int k=0;k<f.length;k++)
+								{
+									if(f[k].getFname().equalsIgnoreCase(f[j].getPurchaseFood()))
+									{
+										System.out.println(f[k].getFid()+"\t\t"+f[k].getFname()+"\t\t"+f[k].getFcatagory()+"\t\t"+f[k].getFprice()+"\t\t"+f[j].getPurchaseFoodQty());
+									}
+								}
+								
+							}
+							System.out.println("________________________________________________________________\n");
+						}
+						
+				case 8:
+						{
+							int sum=0;
+							System.out.println("				BILL							    ");
+							System.out.println("________________________________________________________________");
+							for(int j=0;j<totalpur;j++)
+							{	
+								
+								for(int k=0;k<f.length;k++)
+								{
+									if(f[k].getFname().equalsIgnoreCase(f[j].getPurchaseFood()))
+									{
+										sum=sum+(f[j].getPurchaseFoodQty()*f[j].getFprice());
+										System.out.println(f[k].getFid()+"\t\t"+f[k].getFname()+"\t\t"+f[k].getFcatagory()+"\t\t"+f[k].getFprice()+"\t\t"+f[j].getPurchaseFoodQty()+"\t\t"+(f[j].getPurchaseFoodQty()*f[j].getFprice()));
+									}
+								}
+							}
+							System.out.println("________________________________________________________________");
+							System.out.println("Total : "+sum);
+							System.out.println("\n");
+						}
+						break;
+					//default:System.out.println("Invalid!");break;
+			}
+		
+		}while(choice!=10);
+	}
+}
